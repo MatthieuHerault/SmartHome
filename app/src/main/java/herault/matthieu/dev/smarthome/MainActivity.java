@@ -1,5 +1,6 @@
 package herault.matthieu.dev.smarthome;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -18,9 +19,13 @@ public class MainActivity extends AppCompatActivity {
 
     //Variables
     TextView mConditionTextView;
-    Button mButtonSunny;
-    Button mButtonFoggy;
-    Button mButtonGo;
+    Button mButtonSalonSud;
+    Button mButtonSalonOuest;
+    Button mButtonCuisine;
+    Button mButtonChambre1;
+    Button mButtonChambre2;
+    Button mButtonChambre3;
+    Button mButtonScenario;
 
     DatabaseReference mDatabaseRef = FirebaseDatabase.getInstance().getReference();
     DatabaseReference mConditionRef = mDatabaseRef.child("led_value");
@@ -30,10 +35,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mConditionTextView = (TextView) findViewById(R.id.textViewCondition);
-        mButtonSunny = (Button) findViewById(R.id.btn_sunny);
-        mButtonFoggy = (Button) findViewById(R.id.btn_foggy);
-        mButtonGo = (Button) findViewById(R.id.btn_go);
+        mConditionTextView = findViewById(R.id.textViewCondition);
+        mButtonSalonSud = findViewById(R.id.btn_salon_sud);
+        mButtonSalonOuest = findViewById(R.id.btn_salon_ouest);
+        mButtonCuisine = findViewById(R.id.btn_cuisine);
+        mButtonChambre1 = findViewById(R.id.btn_chambre_1);
+        mButtonChambre2 = findViewById(R.id.btn_chambre_2);
+        mButtonChambre3 = findViewById(R.id.btn_chambre_3);
+        mButtonScenario = findViewById(R.id.btn_scenario);
     }
 
     @Override
@@ -42,32 +51,60 @@ public class MainActivity extends AppCompatActivity {
 
         mConditionRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String text = dataSnapshot.getValue(String.class);
                 mConditionTextView.setText(text);
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
 
-        mButtonFoggy.setOnClickListener(new View.OnClickListener() {
+        mButtonSalonSud.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mConditionRef.setValue("Foggy...");
+                mConditionRef.setValue("mButtonSalonSud");
             }
         });
 
-        mButtonSunny.setOnClickListener(new View.OnClickListener() {
+        mButtonSalonOuest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mConditionRef.setValue("Sunny :D");
+                mConditionRef.setValue("mButtonSalonOuest");
             }
         });
 
-        mButtonGo.setOnClickListener(new View.OnClickListener() {
+        mButtonCuisine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mConditionRef.setValue("mButtonCuisine");
+            }
+        });
+
+        mButtonChambre1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mConditionRef.setValue("mButtonChambre1");
+            }
+        });
+
+        mButtonChambre2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mConditionRef.setValue("mButtonChambre2");
+            }
+        });
+
+        mButtonChambre3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mConditionRef.setValue("mButtonChambre3");
+            }
+        });
+
+        mButtonScenario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SecondActivity.class);
