@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "945536707066",
+    "firebase_url": "https://raspmaison-6691a.firebaseio.com",
+    "project_id": "raspmaison-6691a",
+    "storage_bucket": "raspmaison-6691a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:945536707066:android:ecaa546ee90fd2bd1cdc43",
+        "android_client_info": {
+          "package_name": "herault.matthieu.dev.smarthome"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "945536707066-8lmff8crmie4ku516ii0ckqg16qd8hgm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "herault.matthieu.dev.smarthome",
+            "certificate_hash": "fe4f9eb9d4a193978a357e5237b9020a16b1a8a7"
+          }
+        },
+        {
+          "client_id": "945536707066-t8slsl89gkiv1tjmh70l3d7cmt2ok40b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfhDK71gsJKPfJT3GTAdXGG6x8SBv-MZ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "945536707066-t8slsl89gkiv1tjmh70l3d7cmt2ok40b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

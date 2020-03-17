@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Smart Home</string>
+
+    <string name="txt_by">by Matthieu Hérault</string>
+    <string name="txt_condition">Condition</string>
+
+    <string name="img_launch_icon"/>
+
+    <string name="btn_go">GO</string>
+    <string name="btn_sunny">Sunny</string>
+    <string name="btn_foggy">Foggy</string>
+    <string name="btn_back">Back</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+</resources>
