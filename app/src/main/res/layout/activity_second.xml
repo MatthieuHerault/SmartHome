@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/launch_background_3"
     app:layout_constraintStart_toEndOf="parent"
-    tools:context=".SecondActivity">
+    tools:context=".ScenarioActivity">
 
     <Button
         android:id="@+id/btn_back"

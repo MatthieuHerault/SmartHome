@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,75 +9,186 @@
     app:layout_constraintStart_toEndOf="parent"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/img_launch_icon"
+        android:layout_width="140dp"
+        android:layout_height="150dp"
+        android:contentDescription="@string/img_launch_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_bias="0.07"
+        app:srcCompat="@drawable/launch_icon" />
+
     <TextView
-        android:id="@+id/textViewCondition"
+        android:id="@+id/txt_piece"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/marvel_bold"
-        android:text="@string/txt_condition"
+        android:fontFamily="@font/amatica_sc"
+        android:text="@string/txt_piece"
         android:textColor="@color/colorPrimary"
         android:textSize="36sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.403" />
+        app:layout_constraintTop_toBottomOf="@id/img_launch_icon"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/img_launch_icon"
+        android:paddingTop="10dp"/>
 
     <Button
-        android:id="@+id/btn_sunny"
+        android:id="@+id/btn_salon_sud"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:drawableTop="@drawable/ic_salon_sud"
+        android:fontFamily="@font/marvel_bold"
+        android:text="@string/btn_salon_sud"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/txt_piece"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/btn_salon_ouest"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"/>
+
+    <Button
+        android:id="@+id/btn_salon_ouest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:drawableTop="@drawable/ic_salon_ouest"
+        android:fontFamily="@font/marvel_bold"
+        android:text="@string/btn_salon_ouest"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/txt_piece"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"/>
+
+    <Button
+        android:id="@+id/btn_cuisine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:drawableTop="@drawable/ic_cuisine"
+        android:fontFamily="@font/marvel_bold"
+        android:text="@string/btn_cuisine"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/txt_piece"
+        app:layout_constraintLeft_toRightOf="@id/btn_salon_ouest"
+        app:layout_constraintRight_toRightOf="parent"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"/>
+
+    <Button
+        android:id="@+id/btn_chambre_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:drawableTop="@drawable/ic_chambre"
+        android:fontFamily="@font/marvel_bold"
+        android:text="@string/btn_chambre_1"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/btn_salon_sud"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/btn_chambre_2"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"/>
+
+    <Button
+        android:id="@+id/btn_chambre_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:drawableTop="@drawable/ic_chambre"
+        android:fontFamily="@font/marvel_bold"
+        android:text="@string/btn_chambre_2"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/btn_salon_ouest"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"/>
+
+    <Button
+        android:id="@+id/btn_chambre_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:drawableTop="@drawable/ic_chambre"
+        android:fontFamily="@font/marvel_bold"
+        android:text="@string/btn_chambre_3"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/btn_cuisine"
+        app:layout_constraintLeft_toRightOf="@id/btn_chambre_2"
+        app:layout_constraintRight_toRightOf="parent"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"/>
+
+    <TextView
+        android:id="@+id/txt_autre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/amatica_sc"
-        android:text="@string/btn_sunny"
+        android:text="@string/txt_autre"
         android:textColor="@color/colorPrimary"
-        android:backgroundTint="@color/colorSecondary"
-        android:textSize="40sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.139"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.556" />
+        android:textSize="36sp"
+        app:layout_constraintTop_toBottomOf="@id/btn_chambre_1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/img_launch_icon"
+        android:paddingTop="20dp"/>
 
     <Button
-        android:id="@+id/btn_foggy"
+        android:id="@+id/btn_tout_ouvrir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/btn_foggy"
-        android:fontFamily="@font/amatica_sc"
+        android:background="@android:color/transparent"
+        android:drawableTop="@drawable/ic_tout_ouvrir"
+        android:fontFamily="@font/marvel_bold"
+        android:text="@string/btn_tout_ouvrir"
         android:textColor="@color/colorPrimary"
-        android:backgroundTint="@color/colorSecondary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.857"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.556" />
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/txt_autre"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/btn_tout_fermer"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"/>
 
     <Button
-        android:id="@+id/btn_go"
+        android:id="@+id/btn_tout_fermer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/btn_go"
-        android:fontFamily="@font/amatica_sc"
+        android:background="@android:color/transparent"
+        android:drawableTop="@drawable/ic_tout_fermer"
+        android:fontFamily="@font/marvel_bold"
+        android:text="@string/btn_tout_fermer"
         android:textColor="@color/colorPrimary"
-        android:backgroundTint="@color/colorSecondary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewCondition" />
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/txt_autre"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"/>
 
-    <ImageView
-        android:id="@string/img_launch_icon"
-        android:layout_width="142dp"
-        android:layout_height="195dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.087"
-        app:srcCompat="@drawable/launch_icon" />
+    <Button
+        android:id="@+id/btn_scenario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:drawableTop="@drawable/ic_scenario"
+        android:fontFamily="@font/marvel_bold"
+        android:text="@string/btn_scenario"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/txt_autre"
+        app:layout_constraintLeft_toRightOf="@id/btn_tout_fermer"
+        app:layout_constraintRight_toRightOf="parent"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

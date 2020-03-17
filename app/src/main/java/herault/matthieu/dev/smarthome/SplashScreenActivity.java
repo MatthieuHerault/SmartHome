@@ -6,14 +6,13 @@ import android.content.Intent;
 import android.os.Handler;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
     //Timeout in ms
-    private final int SPLASH_SCREEN_TIMEOUT = 4000;
+    private final int SPLASH_SCREEN_TIMEOUT = 3000;
 
     ProgressBar progressBar;
     int counter = 0;
@@ -23,7 +22,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar = findViewById(R.id.progressBar);
         final Timer timer = new Timer();
         TimerTask timerTask = new TimerTask() {
             @Override
