@@ -1,35 +1,58 @@
 package herault.matthieu.dev.smarthome;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
     //Variables
-    Button mButtonSalonSud;
-    Button mButtonSalonOuest;
-    Button mButtonCuisine;
-    Button mButtonChambre1;
-    Button mButtonChambre2;
-    Button mButtonChambre3;
-    Button mButtonToutOuvrir;
-    Button mButtonToutFermer;
-    Button mButtonScenario;
+    private Button mButtonSalonSud;
+    private Button mButtonSalonOuest;
+    private Button mButtonCuisine;
+    private Button mButtonChambre1;
+    private Button mButtonChambre2;
+    private Button mButtonChambre3;
+    private Button mButtonToutOuvrir;
+    private Button mButtonToutFermer;
+    private Button mButtonScenario;
 
-    DatabaseReference mDatabaseRef = FirebaseDatabase.getInstance().getReference();
-    DatabaseReference mDbSalonSudRef = mDatabaseRef.child("volet_salon_sud");
-    DatabaseReference mDbSalonOuestRef = mDatabaseRef.child("volet_salon_ouest");
-    DatabaseReference mDbCuisineRef = mDatabaseRef.child("volet_cuisine");
-    DatabaseReference mDbChambre1Ref = mDatabaseRef.child("volet_chambre_1");
-    DatabaseReference mDbChambre2Ref = mDatabaseRef.child("volet_chambre_2");
-    DatabaseReference mDbChambre3Ref = mDatabaseRef.child("volet_chambre_3");
-    DatabaseReference mDbTousRef = mDatabaseRef.child("volet_tous");
+    private FirebaseAuth mAuth;
+    FirebaseUser user;
+    private DatabaseReference mDatabaseRef = FirebaseDatabase.getInstance().getReference();
+    private DatabaseReference mDbSalonSudRef = mDatabaseRef.child("volet_salon_sud");
+    private DatabaseReference mDbSalonOuestRef = mDatabaseRef.child("volet_salon_ouest");
+    private DatabaseReference mDbCuisineRef = mDatabaseRef.child("volet_cuisine");
+    private DatabaseReference mDbChambre1Ref = mDatabaseRef.child("volet_chambre_1");
+    private DatabaseReference mDbChambre2Ref = mDatabaseRef.child("volet_chambre_2");
+    private DatabaseReference mDbChambre3Ref = mDatabaseRef.child("volet_chambre_3");
+    private DatabaseReference mDbTousRef = mDatabaseRef.child("volet_tous");
+
+
+    String name;
+    String email;
+    Uri photoUrl;
+    boolean emailVerified;
+    String uid;
+
+    private static final String TAG = "EmailPassword";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +68,33 @@ public class MainActivity extends AppCompatActivity {
         mButtonToutOuvrir = findViewById(R.id.btn_tout_ouvrir);
         mButtonToutFermer = findViewById(R.id.btn_tout_fermer);
         mButtonScenario = findViewById(R.id.btn_scenario);
+
+        //Firebase Authentication
+        mAuth = FirebaseAuth.getInstance();
+        //mAuth.signOut();
+        signIn("matherault@hotmail.fr", "LaurieMatthieu2015");
+
+        //mDatabaseRef.removeValue();
+
+        /*user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            // Name, email address, and profile photo Url
+            name = user.getDisplayName();
+            email = user.getEmail();
+            photoUrl = user.getPhotoUrl();
+
+            // Check if user's email is verified
+            emailVerified = user.isEmailVerified();
+
+            // The user's ID, unique to the Firebase project. Do NOT use this value to
+            // authenticate with your backend server, if you have one. Use
+            // FirebaseUser.getIdToken() instead.
+            uid = user.getUid();
+
+            Toast.makeText(MainActivity.this, "Email : " +email+ " UID : " +uid, Toast.LENGTH_LONG).show();
+
+        }*/
+
     }
 
     @Override
@@ -124,5 +174,28 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    public void signIn(String email, String password) {
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            Toast.makeText(MainActivity.this, "Log in success.",
+                                    Toast.LENGTH_SHORT).show();
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            Toast.makeText(MainActivity.this, "Log in failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+
+                        // ...
+                    }
+                });
     }
 }
