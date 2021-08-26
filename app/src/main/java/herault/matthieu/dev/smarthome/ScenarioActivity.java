@@ -14,9 +14,9 @@ public class ScenarioActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_second);
+        setContentView(R.layout.activity_scenario);
 
-        mButtonBack = findViewById(R.id.btn_back);
+        mButtonBack = findViewById(R.id.btn_retour);
     }
 
     @Override
@@ -32,5 +32,11 @@ public class ScenarioActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        finish();
     }
 }

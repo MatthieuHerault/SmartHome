@@ -2,6 +2,7 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/amatica_sc</item>
+        <item>@font/amatica_sc_bold</item>
         <item>@font/marvel_bold</item>
     </array>
 </resources>

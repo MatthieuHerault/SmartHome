@@ -5,14 +5,13 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.os.Handler;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
     //Timeout in ms
-    private final int SPLASH_SCREEN_TIMEOUT = 3000;
+    private final int SPLASH_SCREEN_TIMEOUT = 2000;
 
     ProgressBar progressBar;
     int counter = 0;
@@ -35,24 +34,27 @@ public class SplashScreenActivity extends AppCompatActivity {
             }
         };
 
-        timer.schedule(timerTask, 0, 30);
+        timer.schedule(timerTask, 0, 20);
 
         //Redirect after 3 seconds
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                //Start a page
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                //Launch LoginActivity
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-
-                //Toast on startup
-                Toast.makeText(SplashScreenActivity.this, "Server Connection Success !", Toast.LENGTH_LONG).show();
+                overridePendingTransition(R.anim.fade_in, R.anim.static_anim);
                 finish();
             }
         };
 
         //Handler post delayed
         new Handler().postDelayed(runnable, SPLASH_SCREEN_TIMEOUT);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        finish();
     }
 }

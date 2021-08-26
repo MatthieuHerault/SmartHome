@@ -1,9 +1,9 @@
 {
-  "volet_chambre_1" : 1,
-  "volet_chambre_2" : 1,
-  "volet_chambre_3" : 1,
-  "volet_cuisine" : 1,
-  "volet_salon_ouest" : 1,
-  "volet_salon_sud" : 1,
-  "volet_tous" : 0
+  "volet_chambre_1" : 0,
+  "volet_chambre_2" : 0,
+  "volet_chambre_3" : 0,
+  "volet_cuisine" : 0,
+  "volet_salon_ouest" : 0,
+  "volet_salon_sud" : 0,
+  "volet_tous" : 1
 }

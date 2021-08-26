@@ -6,25 +6,23 @@
     <string name="txt_piece">Pièce : </string>
     <string name="txt_autre">Autre : </string>
     <string name="txt_condition">Condition</string>
+    <string name="txt_mdp">Mot de passe</string>
+    <string name="txt_inconnu">"…"</string>
 
-    <string name="img_launch_icon"/>
+    <string name="img_launch_icon" />
 
-    <string name="btn_go">GO</string>
-    <string name="btn_sunny">Sunny</string>
-    <string name="btn_foggy">Foggy</string>
-    <string name="btn_back">Back</string>
-    
+    <string name="btn_connexion">Connexion</string>
     <string name="btn_salon_sud">Salon Sud</string>
     <string name="btn_salon_ouest">Salon Ouest</string>
     <string name="btn_cuisine">Cuisine</string>
     <string name="btn_chambre_1">Chambre 1</string>
     <string name="btn_chambre_2">Chambre 2</string>
     <string name="btn_chambre_3">Chambre 3</string>
+    <string name="btn_ouvrir">Ouvrir</string>
     <string name="btn_tout_ouvrir">Tout Ouvrir</string>
+    <string name="btn_fermer">Fermer</string>
     <string name="btn_tout_fermer">Tout Fermer</string>
     <string name="btn_scenario">Scénario</string>
-    <string name="btn_retour">Retour</string>
-
-    <string name="value_ouvert">Ouvert</string>
-    <string name="value_ferme">Fermé</string>
+    <string name="btn_stop">Stop</string>
+    <string name="btn_retour">X</string>
 </resources>

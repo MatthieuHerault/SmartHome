@@ -9,15 +9,16 @@
     tools:context=".ScenarioActivity">
 
     <Button
-        android:id="@+id/btn_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_back"
-        android:fontFamily="@font/amatica_sc"
-        android:textColor="@color/colorPrimary"
-        android:backgroundTint="@color/colorSecondary"
+        android:id="@+id/btn_retour"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/cercle_shape"
+        android:text="@string/btn_retour"
+        android:textColor="@color/colorSecondary"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="410dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
