@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="herault.matthieu.dev.smarthome">
-
     <application
         android:allowBackup="false"
+        android:screenOrientation="locked"
         android:icon="@drawable/icon_no_text"
         android:label="@string/app_name"
         android:roundIcon="@drawable/icon_no_text"
@@ -11,6 +11,7 @@
         android:theme="@style/Theme.AppCompat.Light">
         <activity
             android:name=".SplashScreenActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/SplashTheme"
             android:configChanges="orientation|screenSize|keyboardHidden">
             <intent-filter>
@@ -20,19 +21,21 @@
         </activity>
         <activity
             android:name=".LoginActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:configChanges="orientation|screenSize|keyboardHidden" />
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:configChanges="orientation|screenSize|keyboardHidden" />
         <activity
-            android:name=".ScenarioActivity"
+            android:name=".CameraActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:configChanges="orientation|screenSize|keyboardHidden" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-
 </manifest>

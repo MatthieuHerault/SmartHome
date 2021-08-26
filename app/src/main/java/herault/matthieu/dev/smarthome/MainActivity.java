@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mButtonChambre3;
     private Button mButtonToutOuvrir;
     private Button mButtonToutFermer;
-    private Button mButtonScenario;
+    private Button mButtonCamera;
 
     private Dialog mDialogSalonSud;
     private Dialog mDialogSalonOuest;
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         mButtonChambre3 = findViewById(R.id.btn_chambre_3);
         mButtonToutOuvrir = findViewById(R.id.btn_tout_ouvrir);
         mButtonToutFermer = findViewById(R.id.btn_tout_fermer);
-        mButtonScenario = findViewById(R.id.btn_scenario);
+        mButtonCamera = findViewById(R.id.btn_camera);
 
         mDialogSalonSud = new Dialog(this);
         Objects.requireNonNull(mDialogSalonSud.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -134,11 +135,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mButtonScenario.setOnClickListener(new View.OnClickListener() {
+        mButtonCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Launch ScenarioActivity
-                Intent intent = new Intent(getApplicationContext(), ScenarioActivity.class);
+                //Launch CameraActivity
+                Intent intent = new Intent(getApplicationContext(), CameraActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 finish();

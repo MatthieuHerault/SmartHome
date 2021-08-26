@@ -61,10 +61,10 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="C:\Users\Mathieu\Downloads\cancel.png" />
-                                      <entry key="outputName" value="ic_arrow_stop" />
+                                      <entry key="imageAsset" value="C:\Users\Mathieu\Downloads\security-camera.png" />
+                                      <entry key="outputName" value="ic_camera" />
                                       <entry key="theme" value="CUSTOM" />
-                                      <entry key="themeColor" value="ffffff" />
+                                      <entry key="themeColor" value="32748e" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -173,9 +173,10 @@
                         </option>
                         <option name="values">
                           <map>
+                            <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="ffffff" />
-                            <entry key="outputName" value="ic_stop" />
-                            <entry key="sourceFile" value="C:\Users\Mathieu\AndroidStudioProjects\Icon\window.svg" />
+                            <entry key="outputName" value="ic_camera" />
+                            <entry key="sourceFile" value="C:\Users\Mathieu\AndroidStudioProjects\Icon\camera.svg" />
                           </map>
                         </option>
                       </PersistentState>

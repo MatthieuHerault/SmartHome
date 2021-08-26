@@ -22,7 +22,7 @@
     <string name="btn_tout_ouvrir">Tout Ouvrir</string>
     <string name="btn_fermer">Fermer</string>
     <string name="btn_tout_fermer">Tout Fermer</string>
-    <string name="btn_scenario">Scénario</string>
+    <string name="btn_camera">Camera</string>
     <string name="btn_stop">Stop</string>
-    <string name="btn_retour">X</string>
+    <string name="btn_retour">Retour</string>
 </resources>

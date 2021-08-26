@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class ScenarioActivity extends AppCompatActivity {
+public class CameraActivity extends AppCompatActivity {
 
     //Variables
     Button mButtonBack;
@@ -14,7 +14,7 @@ public class ScenarioActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scenario);
+        setContentView(R.layout.activity_camera);
 
         mButtonBack = findViewById(R.id.btn_retour);
     }
