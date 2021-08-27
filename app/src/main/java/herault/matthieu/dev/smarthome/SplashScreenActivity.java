@@ -11,7 +11,7 @@ import java.util.TimerTask;
 public class SplashScreenActivity extends AppCompatActivity {
 
     //Timeout in ms
-    private final int SPLASH_SCREEN_TIMEOUT = 2000;
+    private final int SPLASH_SCREEN_TIMEOUT = 1500;
 
     ProgressBar progressBar;
     int counter = 0;

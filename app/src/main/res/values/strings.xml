@@ -3,8 +3,6 @@
     <string name="app_name">Smart Home</string>
 
     <string name="txt_by">by Matthieu Hérault</string>
-    <string name="txt_piece">Pièce : </string>
-    <string name="txt_autre">Autre : </string>
     <string name="txt_condition">Condition</string>
     <string name="txt_mdp">Mot de passe</string>
     <string name="txt_inconnu">"…"</string>
@@ -22,6 +20,8 @@
     <string name="btn_tout_ouvrir">Tout Ouvrir</string>
     <string name="btn_fermer">Fermer</string>
     <string name="btn_tout_fermer">Tout Fermer</string>
+    <string name="btn_action_oui">Oui</string>
+    <string name="btn_action_non">Non</string>
     <string name="btn_camera">Camera</string>
     <string name="btn_stop">Stop</string>
     <string name="btn_retour">Retour</string>

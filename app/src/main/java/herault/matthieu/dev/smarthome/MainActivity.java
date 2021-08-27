@@ -6,9 +6,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
@@ -34,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
     private Dialog mDialogChambre1;
     private Dialog mDialogChambre2;
     private Dialog mDialogChambre3;
+    private Dialog mDialogToutOuvrir;
+    private Dialog mDialogToutFermer;
+
+    private Toast mToast;
 
     public DatabaseReference mDatabaseRef = FirebaseDatabase.getInstance().getReference();
     private DatabaseReference mDbSalonSudRef = mDatabaseRef.child("volet_salon_sud");
@@ -71,6 +75,10 @@ public class MainActivity extends AppCompatActivity {
         Objects.requireNonNull(mDialogChambre2.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         mDialogChambre3 = new Dialog(this);
         Objects.requireNonNull(mDialogChambre3.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        mDialogToutOuvrir = new Dialog(this);
+        Objects.requireNonNull(mDialogToutOuvrir.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        mDialogToutFermer = new Dialog(this);
+        Objects.requireNonNull(mDialogToutFermer.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
     }
 
     @Override
@@ -122,16 +130,15 @@ public class MainActivity extends AppCompatActivity {
         mButtonToutOuvrir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mDbTousRef.setValue("Ouvrir");
-                Toast.makeText(MainActivity.this, "Ouverture tous", Toast.LENGTH_SHORT).show();
+                showPopUpAll(mDialogToutOuvrir, mDbTousRef, "Tout Ouvrir ?", "Ouverture tous", "Ouvrir");
             }
         });
 
         mButtonToutFermer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mDbTousRef.setValue("Fermer");
-                Toast.makeText(MainActivity.this, "Fermeture tous", Toast.LENGTH_SHORT).show();
+                showPopUpAll(mDialogToutFermer, mDbTousRef, "Tout Fermer ?", "Fermeture tous", "Fermer");
+
             }
         });
 
@@ -170,7 +177,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 DbRef.setValue("Ouvrir");
-                Toast.makeText(MainActivity.this, "Ouverture Volet " +piece_name, Toast.LENGTH_SHORT).show();
+                mToast = Toast.makeText(MainActivity.this, "Ouverture Volet " +piece_name, Toast.LENGTH_SHORT);
+                mToast.setGravity(Gravity.BOTTOM, 0,0);
+                mToast.show();
             }
         });
 
@@ -178,7 +187,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 DbRef.setValue("Stop");
-                Toast.makeText(MainActivity.this, "Arrêt Volet " +piece_name, Toast.LENGTH_SHORT).show();
+                mToast = Toast.makeText(MainActivity.this, "Arrêt Volet " +piece_name, Toast.LENGTH_SHORT);
+                mToast.setGravity(Gravity.BOTTOM, 0,0);
+                mToast.show();
             }
         });
 
@@ -186,7 +197,50 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 DbRef.setValue("Fermer");
-                Toast.makeText(MainActivity.this, "Fermeture Volet " +piece_name, Toast.LENGTH_SHORT).show();
+                mToast = Toast.makeText(MainActivity.this, "Fermeture Volet " +piece_name, Toast.LENGTH_SHORT);
+                mToast.setGravity(Gravity.BOTTOM, 0,0);
+                mToast.show();
+            }
+        });
+
+        dialog.show();
+    }
+
+    public void showPopUpAll(Dialog mDialog, DatabaseReference mDbRef, String mAction, String mToastText, String mValueText) {
+        TextView dialog_name;
+        Button btn_action_oui;
+        Button btn_action_non;
+        final DatabaseReference DbRef = mDbRef;
+        final String action_name = mAction;
+        final Dialog dialog = mDialog;
+        final String toastText = mToastText;
+        final String valueText = mValueText;
+
+
+        dialog.setContentView(R.layout.pop_up_all);
+        dialog_name = dialog.findViewById(R.id.dialog_name);
+        btn_action_oui = dialog.findViewById(R.id.btn_action_oui);
+        btn_action_non = dialog.findViewById(R.id.btn_action_non);
+
+        Objects.requireNonNull(dialog.getWindow()).setWindowAnimations(R.style.AnimZoom);
+
+        dialog_name.setText(action_name);
+
+        btn_action_oui.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mDbTousRef.setValue(valueText);
+                mToast = Toast.makeText(MainActivity.this, toastText, Toast.LENGTH_SHORT);
+                mToast.setGravity(Gravity.BOTTOM, 0,0);
+                mToast.show();
+                dialog.cancel();
+            }
+        });
+
+        btn_action_non.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.cancel();
             }
         });
 

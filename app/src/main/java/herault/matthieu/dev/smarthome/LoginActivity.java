@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText txt_mdp;
     private FirebaseAuth mAuth;
     private static final String TAG = "EmailPassword";
+    private Toast mToast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +65,9 @@ public class LoginActivity extends AppCompatActivity {
                             Log.d(TAG, "Connexion firebase : réussie");
                             //user = mAuth.getCurrentUser();
                             //String uid = user.getUid();
-                            Toast.makeText(LoginActivity.this, "Connexion réussie", Toast.LENGTH_SHORT).show();
+                            mToast = Toast.makeText(LoginActivity.this, "Connexion réussie", Toast.LENGTH_SHORT);
+                            mToast.setGravity(Gravity.BOTTOM, 0,0);
+                            mToast.show();
 
                             //Launch MainActivity
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -74,7 +78,9 @@ public class LoginActivity extends AppCompatActivity {
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "Connexion firebase : échouée", task.getException());
-                            Toast.makeText(LoginActivity.this, "Connexion échouée", Toast.LENGTH_SHORT).show();
+                            mToast = Toast.makeText(LoginActivity.this, "Connexion échouée", Toast.LENGTH_SHORT);
+                            mToast.setGravity(Gravity.BOTTOM, 0,0);
+                            mToast.show();
                         }
                     }
                 });
