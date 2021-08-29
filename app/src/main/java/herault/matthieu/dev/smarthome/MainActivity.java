@@ -1,18 +1,25 @@
 package herault.matthieu.dev.smarthome;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.Dialog;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mButtonChambre3;
     private Button mButtonToutOuvrir;
     private Button mButtonToutFermer;
-    private Button mButtonCamera;
+    private Button mButtonAlarm;
 
     private Dialog mDialogSalonSud;
     private Dialog mDialogSalonOuest;
@@ -47,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference mDbChambre2Ref = mDatabaseRef.child("volet_chambre_2");
     private DatabaseReference mDbChambre3Ref = mDatabaseRef.child("volet_chambre_3");
     private DatabaseReference mDbTousRef = mDatabaseRef.child("volet_tous");
+    private DatabaseReference mDbAlarme = mDatabaseRef.child("alarme");
+
+    private String etat_alarme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         mButtonChambre3 = findViewById(R.id.btn_chambre_3);
         mButtonToutOuvrir = findViewById(R.id.btn_tout_ouvrir);
         mButtonToutFermer = findViewById(R.id.btn_tout_fermer);
-        mButtonCamera = findViewById(R.id.btn_camera);
+        mButtonAlarm = findViewById(R.id.btn_alarm);
 
         mDialogSalonSud = new Dialog(this);
         Objects.requireNonNull(mDialogSalonSud.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -88,42 +98,42 @@ public class MainActivity extends AppCompatActivity {
         mButtonSalonSud.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showPopUp(mDialogSalonSud, mDbSalonSudRef, "Salon Sud");
+                showPopUpVolet(mDialogSalonSud, mDbSalonSudRef, "Salon Sud");
             }
         });
 
         mButtonSalonOuest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showPopUp(mDialogSalonOuest, mDbSalonOuestRef, "Salon Ouest");
+                showPopUpVolet(mDialogSalonOuest, mDbSalonOuestRef, "Salon Ouest");
             }
         });
 
         mButtonCuisine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showPopUp(mDialogCuisine, mDbCuisineRef, "Cuisine");
+                showPopUpVolet(mDialogCuisine, mDbCuisineRef, "Cuisine");
             }
         });
 
         mButtonChambre1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showPopUp(mDialogChambre1, mDbChambre1Ref, "Chambre 1");
+                showPopUpVolet(mDialogChambre1, mDbChambre1Ref, "Chambre 1");
             }
         });
 
         mButtonChambre2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showPopUp(mDialogChambre2, mDbChambre2Ref, "Chambre 2");
+                showPopUpVolet(mDialogChambre2, mDbChambre2Ref, "Chambre 2");
             }
         });
 
         mButtonChambre3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showPopUp(mDialogChambre3, mDbChambre3Ref, "Chambre 3");
+                showPopUpVolet(mDialogChambre3, mDbChambre3Ref, "Chambre 3");
             }
         });
 
@@ -138,23 +148,73 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 showPopUpAll(mDialogToutFermer, mDbTousRef, "Tout Fermer ?", "Fermeture tous", "Fermer");
+            }
+        });
+
+        //Au démarrage de l'activité
+        //TODO : ajout changement dynamique
+        Query etat_alarme_check = mDbAlarme ;
+        etat_alarme_check.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()) {
+                    String etat = (String) dataSnapshot.getValue();
+                    if(etat.equals("On")) {
+                        alarmeOn();
+                    }else if(etat.equals("Off")) {
+                        alarmeOff();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
 
-        mButtonCamera.setOnClickListener(new View.OnClickListener() {
+        mButtonAlarm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Launch CameraActivity
-                Intent intent = new Intent(getApplicationContext(), CameraActivity.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-                finish();
+                //Launch AlarmActivity
+                //Intent intent = new Intent(getApplicationContext(), AlarmActivity.class);
+                //startActivity(intent);
+                //overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                //finish();
+                if(etat_alarme == "On") {
+                    alarmeOff();
+                    mDbAlarme.setValue("Off");
+                }else if (etat_alarme == "Off") {
+                    alarmeOn();
+                    mDbAlarme.setValue("On");
+                }
             }
         });
     }
 
-    public void showPopUp(Dialog mDialog, DatabaseReference mDbRef, String mPiece) {
+    public void alarmeOn(){
+        etat_alarme = "On";
+        Drawable img_ic_bell_on = getDrawable(R.drawable.ic_bell_on);
+        mButtonAlarm.setCompoundDrawablesWithIntrinsicBounds(null, img_ic_bell_on, null, null);
+        mButtonAlarm.setText(R.string.btn_alarm_on);
+        mButtonAlarm.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
+        mToast = Toast.makeText(MainActivity.this, "Alarme : Activée ", Toast.LENGTH_SHORT);
+        mToast.setGravity(Gravity.BOTTOM, 0,0);
+        mToast.show();
+    }
+
+    public void alarmeOff() {
+        etat_alarme = "Off";
+        Drawable img_ic_bell_off = getDrawable(R.drawable.ic_bell_off);
+        mButtonAlarm.setCompoundDrawablesWithIntrinsicBounds(null, img_ic_bell_off, null, null);
+        mButtonAlarm.setText(R.string.btn_alarm_off);
+        mButtonAlarm.setTextColor(getResources().getColor(android.R.color.holo_red_dark));
+        mToast = Toast.makeText(MainActivity.this, "Alarme : Désactivée ", Toast.LENGTH_SHORT);
+        mToast.setGravity(Gravity.BOTTOM, 0,0);
+        mToast.show();
+    }
+
+    public void showPopUpVolet(Dialog mDialog, DatabaseReference mDbRef, String mPiece) {
         TextView dialog_name;
         Button btn_ouvrir;
         Button btn_stop;
@@ -163,7 +223,7 @@ public class MainActivity extends AppCompatActivity {
         final String piece_name = mPiece;
         final Dialog dialog = mDialog;
 
-        dialog.setContentView(R.layout.pop_up);
+        dialog.setContentView(R.layout.pop_up_volet);
         dialog_name = dialog.findViewById(R.id.dialog_name);
         btn_ouvrir = dialog.findViewById(R.id.btn_ouvrir);
         btn_stop = dialog.findViewById(R.id.btn_stop);
@@ -240,6 +300,7 @@ public class MainActivity extends AppCompatActivity {
         btn_action_non.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mDbTousRef.setValue("Stop");
                 dialog.cancel();
             }
         });

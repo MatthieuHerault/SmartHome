@@ -175,8 +175,8 @@
                           <map>
                             <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="ffffff" />
-                            <entry key="outputName" value="ic_equal" />
-                            <entry key="sourceFile" value="C:\Users\Mathieu\AndroidStudioProjects\Icon\equal.svg" />
+                            <entry key="outputName" value="ic_bell" />
+                            <entry key="sourceFile" value="C:\Users\Mathieu\AndroidStudioProjects\Icon\bell.svg" />
                           </map>
                         </option>
                       </PersistentState>

@@ -174,13 +174,13 @@
         android:paddingBottom="10dp"/>
 
     <Button
-        android:id="@+id/btn_camera"
+        android:id="@+id/btn_alarm"
         android:layout_width="110dp"
         android:layout_height="130dp"
         android:background="@drawable/bordure"
-        android:drawableTop="@drawable/ic_camera"
+        android:drawableTop="@drawable/ic_bell"
         android:fontFamily="@font/marvel_bold"
-        android:text="@string/btn_camera"
+        android:text="@string/btn_alarm"
         android:textColor="@color/colorPrimary"
         android:textSize="20sp"
         app:layout_constraintTop_toTopOf="parent"

@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class CameraActivity extends AppCompatActivity {
+public class AlarmActivity extends AppCompatActivity {
 
     //Variables
     Button mButtonBack;

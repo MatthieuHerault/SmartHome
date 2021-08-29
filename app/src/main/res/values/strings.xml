@@ -22,7 +22,9 @@
     <string name="btn_tout_fermer">Tout Fermer</string>
     <string name="btn_action_oui">Oui</string>
     <string name="btn_action_non">Non</string>
-    <string name="btn_camera">Camera</string>
+    <string name="btn_alarm_on">Alarme : On</string>
+    <string name="btn_alarm_off">Alarme : Off</string>
+    <string name="btn_alarm">Alarme</string>
     <string name="btn_stop">Stop</string>
     <string name="btn_retour">Retour</string>
 </resources>
